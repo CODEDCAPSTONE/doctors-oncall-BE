@@ -57,10 +57,10 @@ app.use(notFound);
 app.use(errorHandler);
 
 // 🔷 Start Server
-const PORT = Number(process.env.PORT) || 5000;
+// const PORT = Number(process.env.PORT) || 5000;
 
-app.listen(PORT, () => {
-  console.log(`🚀 OnCall API running at: http://localhost:${PORT}/api`);
-});
+// app.listen(PORT, () => {
+//   console.log(`🚀 OnCall API running at: http://localhost:${PORT}/api`);
+// });
 
 export default app;

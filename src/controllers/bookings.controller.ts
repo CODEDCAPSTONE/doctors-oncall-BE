@@ -86,20 +86,20 @@ export const createBooking = async (req: Request, res: Response, next: NextFunct
       await Labs.findByIdAndUpdate(serviceProviderId, { $push: { bookings: newBooking._id } }).exec();
     }
 
-    await sendNotification(patientId, "Your booking has been confirmed.", "booking confirmation");
+    // await sendNotification(patientId, "Your booking has been confirmed.", "booking confirmation");
 
-    const reminderTime = moment(date).subtract(1, "hour").toDate();
+    // const reminderTime = moment(date).subtract(1, "hour").toDate();
 
-    cron.schedule(
-      `${reminderTime.getMinutes()} ${reminderTime.getHours()} ${reminderTime.getDate()} ${reminderTime.getMonth() + 1} *`,
-      async () => {
-        try {
-          await sendNotification(patientId, "Reminder: Your booking is in 1 hour.", "reminder");
-        } catch (err) {
-          console.error("Reminder job failed", err);
-        }
-      }
-    );
+    // cron.schedule(
+    //   `${reminderTime.getMinutes()} ${reminderTime.getHours()} ${reminderTime.getDate()} ${reminderTime.getMonth() + 1} *`,
+    //   async () => {
+    //     try {
+    //       await sendNotification(patientId, "Reminder: Your booking is in 1 hour.", "reminder");
+    //     } catch (err) {
+    //       console.error("Reminder job failed", err);
+    //     }
+    //   }
+    // );
 
     res.status(201).json({ message: "Booking created successfully", booking: newBooking });
   } catch (error) {

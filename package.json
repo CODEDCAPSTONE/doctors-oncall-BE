@@ -1,10 +1,10 @@
 {
   "name": "doctorsoncall-be",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.ts"
+    "start": "nodemon src/server.ts"
   },
   "repository": {
     "type": "git",
