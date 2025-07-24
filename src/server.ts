@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log("✅ MONGODB_URI:", process.env.MONGODB_URI); // Add this line
+const PORT = process.env.PORT || 8080;
 
 // Connect to MongoDB
 const connectDB = async () => {
@@ -22,9 +24,15 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-const PORT = process.env.PORT || 8080;
-connectDB()
 
- app.listen(PORT, () => {
-    console.log(`🚀 OnCall API Server is running at: http://localhost:${PORT}`);
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`🚀 OnCall API Server is running at: http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ Error during DB connection or startup:", err);
+    process.exit(1);
   });
